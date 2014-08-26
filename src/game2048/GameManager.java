@@ -86,10 +86,12 @@ public class GameManager extends Group {
 
     public GameManager(int gridSize) {
         this.gameGrid = new HashMap<>();
+        this.myGriglia = new MyGriglia();   //myGriglia inizializzata con caselle a -1
         this.gridSize = gridSize;
         this.traversalX = IntStream.range(0, gridSize).boxed().collect(Collectors.toList());
         this.traversalY = IntStream.range(0, gridSize).boxed().collect(Collectors.toList());
-
+        
+        
         createScore();
         createGrid();
         initGameProperties();

@@ -97,7 +97,32 @@ public class GameManager extends Group {
         initGameProperties();
 
         initializeGrid();
+        /*
+        btn = new Button("Prossima Mossa");
+        btn.setTranslateX(10);
+        btn.setTranslateY(100);
+        HBox hbBtn = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().add(btn);
+        getChildren().add(hbBtn);
+        
+        GiocatoreAutomatico myPlayer= new MyGiocatoreAutomatico();
+        //throw myPlayer =GiocatoreAutomatico.getGiocatoreAutomatico();
+        /*
+        btn.setOnAction(new EventHandler<ActionEvent>(){
 
+            @Override
+            public void handle(ActionEvent event) {
+                
+                myPlayer.prossimaMossa(myGriglia);
+            }
+            
+        });
+        */
+        /*
+        In Lambda Expression
+        */
+        
         this.setManaged(false);
     }
 

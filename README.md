@@ -39,6 +39,14 @@ button per attivare il giocatore automatico e conseguente azione che crea un Thr
 chiamata al metodo del giocatoreAutomatico prossimaMossa che restituisce un int random da 0 a 3, switch nel valore int con conseguente creazione di un valore Direction che viene passato al metodo move() del GameManager che si occupa di gestire tutto il procedimento del movimento di una casella e le sue conseguenze. 
 Finchè non si ha il gameOver (e anche il gameWon) il Robot continua a premere H e ogni volta l'ascoltatore intercetta l evento permettendo l esecuzione del gioco in autonomia.
 
+é l'ascoltatore che richiama il metodo prossima mossa invece l'oggetto giocatore automatico viene creato tramite il suo metodo button per attivare il giocatore automatico, la pressione del tasto h è creato tramite un oggetto di tipo robot, che va in un thread che viene mandato in esecuzione affianco all'intefaccia grafica per questo funziona altrimenti non funzionava il meccanismo di simulazione di premere il tasto h viene fatto in un altro processo rispetto al processo principale perchè cosi puo lavorare in contemporaneo rispetto all'interfaccia grafica.
+c'è il processo principale è l'intefaccia grafica in se
+il thread serve per far gestire l'evento per premere il tasto h riconoscerlo e richiamare alcuni metodi in un altro thread che è separato da quello principale poi conseguentemente tutte le chiamate al metodo che avvengono
+i thred sono in maniera affiancata o meglio parallelo lavora in autonomia ma non blocca il processo principale 
+
+permette di gestire il giocatore automatico parallale senza bloccare il giocatore automatico, c'era il bisogno che chiamata al metodo move al in modo automatico avvenisse parallelamente al processo principale senza bloccarlo e da li è nata l'idea di un thread di un altro processo quindi; la chiamata al metodo move avviene in questo metodo 
+adbtclick è l'ascoltatore che lavora nel processo principale perchè viene catturata l'evento del tasto premuto 
+
 
 
 

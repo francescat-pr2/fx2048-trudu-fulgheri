@@ -63,11 +63,11 @@ public class GameManager extends Group {
     private final IntegerProperty gameMovePoints = new SimpleIntegerProperty(0);
     private final Set<Tile> mergedToBeRemoved = new HashSet<>();
     private final ParallelTransition parallelTransition = new ParallelTransition();
-    private final BooleanProperty layerOnProperty = new SimpleBooleanProperty(false);
-
-    // User Interface controls
-    private final VBox vGame = new VBox(50);
-    private final Group gridGroup = new Group();
+    private final BooleanProperty layerOnProperty = new SimpleBooleanProperty(false)
+    //variabili pubbliche per permettere la lettura diretta
+    final MyGriglia myGriglia;
+    boolean gameOver=false;
+    boolean gameWon=false;
 
     private final HBox hTop = new HBox(0);
     private final Label lblScore = new Label("0");

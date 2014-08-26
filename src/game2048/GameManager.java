@@ -175,16 +175,21 @@ public class GameManager extends Group {
             if (tile == null) {
                 return 0;
             }
-
-            Location farthestLocation = findFarthestLocation(thisloc, direction); // farthest available location
+            
+             Location farthestLocation = findFarthestLocation(thisloc, direction); // farthest available location
             Location nextLocation = farthestLocation.offset(direction); // calculates to a possible merge
             Tile tileToBeMerged = nextLocation.isValidFor(gridSize) ? gameGrid.get(nextLocation) : null;
 
             if (tileToBeMerged != null && tileToBeMerged.getValue().equals(tile.getValue()) && !tileToBeMerged.isMerged()) {
                 tileToBeMerged.merge(tile);
-
+                
+                //all aggiornamento di gameGrid viene aggiornata anche myGriglia
                 gameGrid.put(nextLocation, tileToBeMerged);
+                myGriglia.put(nextLocation, tileToBeMerged.getValue());
                 gameGrid.replace(tile.getLocation(), null);
+                myGriglia.replace(tile.getLocation(), -1);
+               
+      
 
                 parallelTransition.getChildren().add(animateExistingTile(tile, tileToBeMerged.getLocation()));
                 parallelTransition.getChildren().add(hideTileToBeMerged(tile));
@@ -195,13 +200,17 @@ public class GameManager extends Group {
 
                 if (tileToBeMerged.getValue() == FINAL_VALUE_TO_WIN) {
                     gameWonProperty.set(true);
+                    gameWon=true;
                 }
                 return 1;
             } else if (farthestLocation.equals(tile.getLocation()) == false) {
                 parallelTransition.getChildren().add(animateExistingTile(tile, farthestLocation));
 
+                //all aggiornamento di gameGrid viene aggiornata anche myGriglia
                 gameGrid.put(farthestLocation, tile);
+                myGriglia.put(farthestLocation, tile.getValue());
                 gameGrid.replace(tile.getLocation(), null);
+                myGriglia.replace(tile.getLocation(), null);
 
                 tile.setLocation(farthestLocation);
 
@@ -226,6 +235,7 @@ public class GameManager extends Group {
             Location randomAvailableLocation = findRandomAvailableLocation();
             if (randomAvailableLocation == null && !mergeMovementsAvailable()) {
                 gameOverProperty.set(true);
+                gameOver=true;
             } else if (randomAvailableLocation != null && tilesWereMoved > 0) {
                 addAndAnimateRandomTile(randomAvailableLocation);
             }
@@ -234,6 +244,7 @@ public class GameManager extends Group {
 
             // reset merged after each movement
             gameGrid.values().stream().filter(Objects::nonNull).forEach(Tile::clearMerge);
+            
         });
 
         synchronized (gameGrid) {
@@ -482,6 +493,9 @@ public class GameManager extends Group {
         traverseGrid((x, y) -> {
             Location thisloc = new Location(x, y);
             gameGrid.put(thisloc, null);
+            
+            
+                System.out.println(thisloc);
             return 0;
         });
     }
@@ -509,6 +523,10 @@ public class GameManager extends Group {
                 return;
             }
             gameGrid.put(t.getLocation(), t);
+            //inizializza myGriglia
+            myGriglia.put(t.getLocation(),t.getValue());
+            //System.out.print(myGriglia.get(t.getLocation()));
+            
         });
 
         redrawTilesInGameGrid();
@@ -543,8 +561,10 @@ public class GameManager extends Group {
         tile.setLayoutY(layoutY);
         tile.setScaleX(0);
         tile.setScaleY(0);
-
+        
+        //inizializza myGriglia come gameGrid
         gameGrid.put(tile.getLocation(), tile);
+        myGriglia.put(tile.getLocation(),tile.getValue());
         gridGroup.getChildren().add(tile);
 
         animateNewlyAddedTile(tile).play();

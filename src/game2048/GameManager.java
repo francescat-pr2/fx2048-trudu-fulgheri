@@ -69,12 +69,17 @@ public class GameManager extends Group {
     boolean gameOver=false;
     boolean gameWon=false;
 
+    // User Interface controls
+    private final VBox vGame = new VBox(50);
+    private final Group gridGroup = new Group();
+
     private final HBox hTop = new HBox(0);
     private final Label lblScore = new Label("0");
     private final Label lblPoints = new Label();
     private final HBox hOvrLabel = new HBox();
     private final HBox hOvrButton = new HBox();
-
+    
+   // private final Button btn;
     public GameManager() {
         this(DEFAULT_GRID_SIZE);
     }

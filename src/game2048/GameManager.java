@@ -124,6 +124,34 @@ public class GameManager extends Group {
         */
         
         this.setManaged(false);
+        
+        /*
+        btn.setOnAction((ActionEvent event) -> {
+            while(gameOverProperty.getValue()==false && gameWonProperty.getValue()==false){
+            System.out.println(gameOverProperty.getValue());
+            /*    
+            synchronized(gameGrid){
+                    try{
+                        Thread.sleep(3000);
+                    }catch(Exception e){}
+                }
+             */   
+               /*
+                int pross = myPlayer.prossimaMossa(myGriglia);
+                switch(pross){
+                    case 0: this.move(Direction.UP);
+                        break;
+                    case 1: this.move(Direction.RIGHT);
+                        break;
+                    case 2: this.move(Direction.DOWN);
+                        break;
+                    case 3: this.move(Direction.LEFT);
+                        break;
+                }
+            }
+            
+        });*/
+        
     }
 
     public void move(Direction direction) {

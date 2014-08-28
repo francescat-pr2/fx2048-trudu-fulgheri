@@ -1,5 +1,6 @@
 package game2048;
 
+import giocatoreAutomatico.player.MyGriglia;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.IntBinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,7 +41,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author bruno
+ * @author Chicca e Nady
  */
 public class GameManager extends Group {
 
@@ -63,7 +65,8 @@ public class GameManager extends Group {
     private final IntegerProperty gameMovePoints = new SimpleIntegerProperty(0);
     private final Set<Tile> mergedToBeRemoved = new HashSet<>();
     private final ParallelTransition parallelTransition = new ParallelTransition();
-    private final BooleanProperty layerOnProperty = new SimpleBooleanProperty(false)
+    private final BooleanProperty layerOnProperty = new SimpleBooleanProperty(false);
+    
     //variabili pubbliche per permettere la lettura diretta
     final MyGriglia myGriglia;
     boolean gameOver=false;
@@ -80,6 +83,7 @@ public class GameManager extends Group {
     private final HBox hOvrButton = new HBox();
     
    // private final Button btn;
+
     public GameManager() {
         this(DEFAULT_GRID_SIZE);
     }
@@ -97,70 +101,30 @@ public class GameManager extends Group {
         initGameProperties();
 
         initializeGrid();
-        /*
-        btn = new Button("Prossima Mossa");
-        btn.setTranslateX(10);
-        btn.setTranslateY(100);
-        HBox hbBtn = new HBox(10);
-        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btn);
-        getChildren().add(hbBtn);
-        
-        GiocatoreAutomatico myPlayer= new MyGiocatoreAutomatico();
-        //throw myPlayer =GiocatoreAutomatico.getGiocatoreAutomatico();
-        /*
-        btn.setOnAction(new EventHandler<ActionEvent>(){
 
-            @Override
-            public void handle(ActionEvent event) {
-                
-                myPlayer.prossimaMossa(myGriglia);
-            }
-            
-        });
-        */
-        /*
-        In Lambda Expression
-        */
         
+        
+        
+        
+        
+
         this.setManaged(false);
         
-        /*
-        btn.setOnAction((ActionEvent event) -> {
-            while(gameOverProperty.getValue()==false && gameWonProperty.getValue()==false){
-            System.out.println(gameOverProperty.getValue());
-            /*    
-            synchronized(gameGrid){
-                    try{
-                        Thread.sleep(3000);
-                    }catch(Exception e){}
-                }
-             */   
-               /*
-                int pross = myPlayer.prossimaMossa(myGriglia);
-                switch(pross){
-                    case 0: this.move(Direction.UP);
-                        break;
-                    case 1: this.move(Direction.RIGHT);
-                        break;
-                    case 2: this.move(Direction.DOWN);
-                        break;
-                    case 3: this.move(Direction.LEFT);
-                        break;
-                }
-            }
-            
-        });*/
         
     }
+    
 
     public void move(Direction direction) {
+        
+        
         if (layerOnProperty.get()) {
+            
             return;
         }
 
         synchronized (gameGrid) {
             if (movingTiles) {
+                
                 return;
             }
         }
@@ -175,8 +139,8 @@ public class GameManager extends Group {
             if (tile == null) {
                 return 0;
             }
-            
-             Location farthestLocation = findFarthestLocation(thisloc, direction); // farthest available location
+
+            Location farthestLocation = findFarthestLocation(thisloc, direction); // farthest available location
             Location nextLocation = farthestLocation.offset(direction); // calculates to a possible merge
             Tile tileToBeMerged = nextLocation.isValidFor(gridSize) ? gameGrid.get(nextLocation) : null;
 

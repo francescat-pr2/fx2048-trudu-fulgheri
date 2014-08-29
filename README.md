@@ -52,7 +52,7 @@ adbtclick è l'ascoltatore che lavora nel processo principale perchè viene catt
 
 READ ME SECONDO NADIA
 
-<font color="red">*Pr2 Project 2014*</font>
+*Pr2 Project 2014*
 
 *Francesca Trudu* -
 *Fulgheri Nadia Jolanda*

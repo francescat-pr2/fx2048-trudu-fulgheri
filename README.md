@@ -78,12 +78,12 @@ Quindi riassumendo GameManager si occupa delle seguenti funzioni:
 -aggiornamento della griglia (a livello grafico), 
 -aggiornamento dello score, 
 -conclusione del gioco in caso di gameOver e gameWon della partita.
+-aggiunta di 3 variabili boolean: gameOver e gameWon pubbliche e Griglia: myGriglia viene aggiornata in base alla situazione del gioco
 
 Modifiche effettuate:
 -aggiunta del package giocatoreAutomatico (e giocatoreAutomatico.player);
 -aggiunta delle classi implementate dalle interfacce.
 
--aggiunta di 3 variabili in GameManager -> boolean: gameOver e gameWon pubbliche e Griglia: myGriglia viene aggiornata in base alla situazione del gioco
 
 
 -aggiunta di variabili, di un ascoltatore e di un Thread in Game2048 -> giocatoreAutomatico: viene creato un oggetto giocatoreAutomatico tramite il suo metodo; 

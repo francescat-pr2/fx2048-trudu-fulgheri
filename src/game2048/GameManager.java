@@ -527,7 +527,13 @@ public class GameManager extends Group {
         tile.setScaleY(0);
         
         //inizializza myGriglia come gameGrid
-        gameGrid.put(tile.getLocation(), tile);
+        gameGrid.put(tile.getLocation(), tile);restituisce la posizione finale
+        myGriglia.put(tile.getLocation(),tile.getValue())
+        gridGroup.getChildren().add(tile);
+
+        animateNewlyAddedTile(tile).play();???????
+    }
+
         myGriglia.put(tile.getLocation(),tile.getValue());
         gridGroup.getChildren().add(tile);
 

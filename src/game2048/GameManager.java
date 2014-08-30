@@ -529,7 +529,7 @@ public class GameManager extends Group {
         //inizializza myGriglia come gameGrid
         gameGrid.put(tile.getLocation(), tile);//restituisce la posizione finale
         myGriglia.put(tile.getLocation(),tile.getValue())//restituisce il valore finale della nuova casella ottenuta dalla somma delle precedenti
-        gridGroup.getChildren().add(tile);
+        gridGroup.getChildren().add(tile);//restituisce la casella figlia
 
         animateNewlyAddedTile(tile).play();???????
     }
